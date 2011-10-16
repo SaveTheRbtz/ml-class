@@ -1,3 +1,4 @@
+#!/usr/bin/env octave
 %% Machine Learning Online Class
 %  Exercise 1: Linear regression with multiple variables
 %
@@ -24,12 +25,16 @@
 %  learning rates).
 %
 
-%% Initialization
-
-%% ================ Part 1: Feature Normalization ================
-
 %% Clear and Close Figures
 clear all; close all; clc
+
+%% Initialization
+% 1650 sq-ft, 3 br house
+% Don't know about naming conventions in Ocvate/Matlab, so using nerdCaps
+% TODO(SaveTheRbtz@): Normalize it!
+houseToCheck = [ 1650, 3];
+
+%% ================ Part 1: Feature Normalization ================
 
 fprintf('Loading data ...\n');
 
@@ -82,7 +87,11 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.01;
+% TODO(SaveTheRbtz@): We should for some clever way to find an alpha instead
+% of manually brute forcing it. May be in gradientDescent function if we see
+% that thetas are increasing - devide alpha by half(just like TCP does with
+% it's window size when drop happends).
+alpha = 0.1;
 num_iters = 100;
 
 % Init Theta and Run Gradient Descent 
@@ -100,13 +109,34 @@ fprintf('Theta computed from gradient descent: \n');
 fprintf(' %f \n', theta);
 fprintf('\n');
 
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
+figure;
+hold on;
 
+% Plot data
+plot3(X(:, 2), X(:, 3), y, 'xr');
 
+xlabel('sq. feet');
+ylabel('bedrooms');
+zlabel('price');
+
+% Three std. dev. each direction
+m = length(y);
+limit = 3;
+x_val = linspace(-limit, limit, m)';
+y_val = linspace(-limit, limit, m)';
+z_val = [ones(m, 1), x_val, y_val] * theta;
+plot3(x_val, y_val, z_val);
+
+legend('data', 'gradient decent')
+
+price = [1 ((houseToCheck - mu) ./ sigma)] * theta;
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
@@ -146,14 +176,12 @@ fprintf('Theta computed from the normal equations: \n');
 fprintf(' %f \n', theta);
 fprintf('\n');
 
-
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
+price = [1 houseToCheck] * theta;
 
 
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
          '(using normal equations):\n $%f\n'], price);
-

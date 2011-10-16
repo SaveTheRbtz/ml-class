@@ -1,3 +1,4 @@
+#!/usr/bin/env octave
 %% Machine Learning Online Class - Exercise 1: Linear Regression
 
 %  Instructions
@@ -120,3 +121,6 @@ contour(theta0_vals, theta1_vals, J_vals, logspace(-2, 3, 20))
 xlabel('\theta_0'); ylabel('\theta_1');
 hold on;
 plot(theta(1), theta(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
