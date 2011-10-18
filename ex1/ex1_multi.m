@@ -31,8 +31,7 @@ clear all; close all; clc
 %% Initialization
 % 1650 sq-ft, 3 br house
 % Don't know about naming conventions in Ocvate/Matlab, so using nerdCaps
-% TODO(SaveTheRbtz@): Normalize it!
-houseToCheck = [ 1650, 3];
+houseToCheck = [1, 1650, 3];
 
 %% ================ Part 1: Feature Normalization ================
 
@@ -120,23 +119,27 @@ figure;
 hold on;
 
 % Plot data
-plot3(X(:, 2), X(:, 3), y, 'xr');
+scatter3(X(:, 2), X(:, 3), y, 'r');
 
 xlabel('sq. feet');
 ylabel('bedrooms');
 zlabel('price');
 
+% Drawing a linear regression line
 % Three std. dev. each direction
-m = length(y);
 limit = 3;
-x_val = linspace(-limit, limit, m)';
-y_val = linspace(-limit, limit, m)';
-z_val = [ones(m, 1), x_val, y_val] * theta;
-plot3(x_val, y_val, z_val);
+m = length(y);
+val = linspace(-limit, limit, m)';
+z_val = [ones(m, 1), val, val] * theta;
+plot3(val, val, z_val);
 
 legend('data', 'gradient decent')
 
-price = [1 ((houseToCheck - mu) ./ sigma)] * theta;
+% Normalizing data
+% NB! The first column of X is all-ones
+houseToCheckNormalized = [1 ((houseToCheck(2:3) - mu) ./ sigma)]
+% Computing price
+price = houseToCheckNormalized * theta;
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
@@ -178,7 +181,7 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = [1 houseToCheck] * theta;
+price = houseToCheck * theta;
 
 
 % ============================================================
