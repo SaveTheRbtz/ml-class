@@ -90,7 +90,7 @@ fprintf('Running gradient descent ...\n');
 % of manually brute forcing it. May be in gradientDescent function if we see
 % that thetas are increasing - devide alpha by half(just like TCP does with
 % it's window size when drop happends).
-alpha = 0.1;
+alpha = 1;
 num_iters = 100;
 
 % Init Theta and Run Gradient Descent 
