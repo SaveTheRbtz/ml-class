@@ -1,3 +1,4 @@
+#!/usr/bin/env octave
 %% Machine Learning Online Class - Exercise 2: Logistic Regression
 %
 %  Instructions
