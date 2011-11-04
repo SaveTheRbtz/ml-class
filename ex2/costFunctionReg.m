@@ -21,7 +21,7 @@ grad = zeros(size(theta));
 penalize = sum(theta(2:length(theta)) .^ 2);
 J = J + lambda/(2*m) * penalize;
 
-grad(2:length(grad)) = grad(2:length(grad)) + (lambda/m)*theta(2:length(theta));
+grad(2:end) = grad(2:end) + (lambda/m)*theta(2:end);
 % =============================================================
 
 end
