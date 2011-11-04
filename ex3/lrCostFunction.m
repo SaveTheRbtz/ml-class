@@ -36,14 +36,8 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
-
-
-
-
-
-
-
-
+addpath('../ex2');
+[J, grad] = costFunctionReg(theta, X, y, lambda);
 
 % =============================================================
 
