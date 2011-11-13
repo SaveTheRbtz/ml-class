@@ -97,9 +97,15 @@ delta_3 = A3 - Y;
 delta_2 = (Theta2'*delta_3)(2:end, :) .* sigmoidGradient(Z2);
 
 % Calculate gradients
-Theta1_grad = (delta_2 * A1')/m;
-Theta2_grad = (delta_3 * A2')/m;
+Theta1_unreg_grad = (delta_2 * A1')/m;
+Theta2_unreg_grad = (delta_3 * A2')/m;
 
+% Regularize
+Theta1_grad = Theta1_unreg_grad + (lambda/m) * Theta1;
+Theta2_grad = Theta2_unreg_grad + (lambda/m) * Theta2;
+
+Theta1_grad(:, 1) = Theta1_unreg_grad(:, 1);
+Theta2_grad(:, 1) = Theta2_unreg_grad(:, 1);
 
 % -------------------------------------------------------------
 
