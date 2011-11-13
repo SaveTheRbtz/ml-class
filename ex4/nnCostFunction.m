@@ -62,23 +62,27 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Convert y to matrix
+% XXX(SaveTheRbtz@): Curious how it can be vectorized.
+number_of_classes = length(unique(y));
+Y = zeros(number_of_classes, m);
+for i = 1:m
+    Y(y(i), i) = 1;
+endfor
 
+% Do forward propagation
+% Copy/Paste from ex3 predict.m
+% FIXME(SaveTheRbtz@): Move to separate function
+A1 = [ones(1, m); X'];
+A2 = [ones(1, m); sigmoid(Theta1*A1)];
+A3 = sigmoid(Theta2*A2);
 
+% A3 here is our h0
+h0 = A3;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% Compute cost function
+% Slightly modified version of ex2 costFunction
+J = (1/m)*sum(sum(-Y.*log(h0) - (1-Y).*log(1-h0)));
 
 % -------------------------------------------------------------
 
