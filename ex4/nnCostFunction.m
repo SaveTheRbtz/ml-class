@@ -81,8 +81,13 @@ A3 = sigmoid(Theta2*A2);
 h0 = A3;
 
 % Compute cost function
-% Slightly modified version of ex2 costFunction
+% XXX(SaveTheRbtz@): Slightly modified version of ex2 costFunction
 J = (1/m)*sum(sum(-Y.*log(h0) - (1-Y).*log(1-h0)));
+
+% Add some regularization
+% XXX(SaveTheRbtz@): Also borrowed from ex2 costFunctionReg
+penalize = sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2));
+J = J + (lambda/(2*m)) * penalize
 
 % -------------------------------------------------------------
 
