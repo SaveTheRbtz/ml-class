@@ -21,6 +21,8 @@ W = zeros(L_out, 1 + L_in);
 
 % Randomly initialize the weights to small values
 % XXX(SaveTheRbtz@): This one was given in text book
+% Book also suggests setting epsilon based on number of nodes in network:
+%epsilon_init = (sqrt(6)/(sqrt(L_in + L_out)));
 epsilon_init = 0.12;
 W = rand(L_out, 1 + L_in) * 2 * epsilon_init - epsilon_init;
 
