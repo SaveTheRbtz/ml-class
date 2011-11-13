@@ -63,7 +63,8 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 % Convert y to matrix
-% XXX(SaveTheRbtz@): Curious how it can be vectorized.
+% XXX(SaveTheRbtz@): Curious how it can be vectorized (Should reread ex3 for
+% logical arrays)
 number_of_classes = length(unique(y));
 Y = zeros(number_of_classes, m);
 for i = 1:m
@@ -74,8 +75,10 @@ endfor
 % Copy/Paste from ex3 predict.m
 % FIXME(SaveTheRbtz@): Move to separate function
 A1 = [ones(1, m); X'];
-A2 = [ones(1, m); sigmoid(Theta1*A1)];
-A3 = sigmoid(Theta2*A2);
+Z2=Theta1*A1;
+A2 = [ones(1, m); sigmoid(Z2)];
+Z3=Theta2*A2;
+A3 = sigmoid(Z3);
 
 % A3 here is our h0
 h0 = A3;
@@ -87,7 +90,16 @@ J = (1/m)*sum(sum(-Y.*log(h0) - (1-Y).*log(1-h0)));
 % Add some regularization
 % XXX(SaveTheRbtz@): Also borrowed from ex2 costFunctionReg
 penalize = sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2));
-J = J + (lambda/(2*m)) * penalize
+J = J + (lambda/(2*m)) * penalize;
+
+% Implement backpropagation
+delta_3 = A3 - Y;
+delta_2 = (Theta2'*delta_3)(2:end, :) .* sigmoidGradient(Z2);
+
+% Calculate gradients
+Theta1_grad = (delta_2 * A1')/m;
+Theta2_grad = (delta_3 * A2')/m;
+
 
 % -------------------------------------------------------------
 
