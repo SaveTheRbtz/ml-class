@@ -22,7 +22,7 @@ function [X, fX, i] = fmincg(f, X, options, P1, P2, P3, P4, P5)
 % and "i" the number of iterations (line searches or function evaluations,
 % depending on the sign of "length") used.
 %
-% Usage: [X, fX, i] = minimize(X, f, length, P1, P2, P3, P4, P5)
+% Usage: [X, fX, i] = fmincg(f, X, options, P1, P2, P3, P4, P5)
 %
 % See also: checkgrad 
 %
