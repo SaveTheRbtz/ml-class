@@ -16,6 +16,7 @@ costFunction = @(t) linearRegCostFunction(X, y, t, lambda);
 options = optimset('MaxIter', 200, 'GradObj', 'on');
 
 % Minimize using fmincg
+% XXX(SaveTheRbtz@): Disable warnings here?
 theta = fmincg(costFunction, initial_theta, options);
 
 end
