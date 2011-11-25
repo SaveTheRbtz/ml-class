@@ -1,3 +1,4 @@
+#!/usr/bin/env octave
 %% Machine Learning Online Class
 %  Exercise 6 | Support Vector Machines
 %
