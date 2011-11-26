@@ -41,8 +41,8 @@ endfor
 
 % MATLAB's unstack would be usefull here =(
 minimum = sortrows(result)(1,:);
-C = minimum(2)
-sigma = minimum(3)
+C = minimum(2);
+sigma = minimum(3);
 
 endif
 % =========================================================================
