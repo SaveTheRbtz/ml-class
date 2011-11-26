@@ -16,10 +16,11 @@ sim = 0;
 %
 %
 
-
-
-
-
+% I've used matrix multiplication insted of instead of square and sum
+sim = exp(-((x1 - x2)'*(x1-x2))/(2*(sigma^2)));
+% Canonic implementation is:
+% sim = exp(-sum((x1 - x2) .^ 2)/(2*(sigma^2)));
+% TODO(SaveTheRbtz@): Should test that i'm not trying to outsmart an optimizer
 
 % =============================================================
     
