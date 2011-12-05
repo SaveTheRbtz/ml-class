@@ -21,11 +21,15 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+% TODO(SaveTheRbtz@): Think how it can be vectorized
+for i = 1:length(idx)
+    distance = zeros(K, 1);
+    for j = 1:K
+        % TODO(SaveTheRbtz@): Can be vectorized as diff * diff'
+        distance(j) = sum(sum((X(i, :) - centroids(j, :)) .^ 2 ));
+    endfor
+    [value, idx(i)] = min(distance);
+endfor
 
 % =============================================================
 
