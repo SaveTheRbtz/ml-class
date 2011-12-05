@@ -26,12 +26,10 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
-
+% TODO(SaveTheRbtz@): See if it can be futher vectorized
+for k = 1:K
+    point_indeces = find(idx==k);
+    centroids(k, :) = sum(X(point_indeces, :)) ./ length(point_indeces);
 
 % =============================================================
 
