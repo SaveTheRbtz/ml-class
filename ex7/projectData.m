@@ -18,8 +18,13 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
-
-
+% TODO(SaveTheRbtz@): Vectorize me!
+for i = 1:size(X, 1)
+    x = X(i, :)';
+    for k = 1:K
+        Z(i, k) = x' * U(:, k);
+    endfor
+endfor
 
 % =============================================================
 
