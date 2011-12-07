@@ -1,3 +1,4 @@
+#!/usr/bin/env octave
 %% Machine Learning Online Class
 %  Exercise 8 | Anomaly Detection and Collaborative Filtering
 %
