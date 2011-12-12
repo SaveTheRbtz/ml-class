@@ -40,20 +40,8 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% FIXME(SaveTheRbtz@): Not optical: preforms calculations on cells with R(i,j) == 0
+J = sum(sum((R==1) .* ((X * Theta' - Y) .^ 2))) / 2;
 
 % =============================================================
 
