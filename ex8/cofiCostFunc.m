@@ -43,6 +43,9 @@ Theta_grad = zeros(size(Theta));
 % FIXME(SaveTheRbtz@): Not optical: preforms calculations on cells with R(i,j) == 0
 J = sum(sum((R==1) .* ((X * Theta' - Y) .^ 2))) / 2;
 
+X_grad = (R==1) .* (X * Theta' - Y) * Theta;
+Theta_grad = (R==1)' .* (X * Theta' - Y)' * X;
+
 % =============================================================
 
 grad = [X_grad(:); Theta_grad(:)];
