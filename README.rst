@@ -15,6 +15,6 @@ This is quote from `Course Info`_ page:
     ask only that you not look at any source code written by a different
     student, nor show your solution code to other students.
 
-    -- Professor Andrew Ng
+    -- Professor Andrew Ng & The ml-class Team
 
 .. _Course Info: http://www.ml-class.org/course/resources/index?page=course-info
